@@ -4,20 +4,21 @@ from simpleeval import simple_eval
 from typing import Callable
 
 
-class Argparse:
-    class FunctionInfo:
-        def __init__(self, name: str, instance: Callable, kwargs: dict) -> None:
-            self.name = name
-            self.instance = instance
-            self.kwargs = kwargs
+class FunctionInfo:
+    def __init__(self, name: str, instance: Callable, kwargs: dict) -> None:
+        self.name = name
+        self.instance = instance
+        self.kwargs = kwargs
 
+
+class Argparse:
     def __init__(self, **kwargs) -> None:
         self.functions = list()
         self.parser = argparse.ArgumentParser(**kwargs)
 
     def add_command(self, **kwargs) -> Callable:
         def inner(func):
-            self.functions.append(self.FunctionInfo(func.__name__, func, kwargs))
+            self.functions.append(FunctionInfo(func.__name__, func, kwargs))
 
         return inner
 
@@ -57,5 +58,6 @@ def mkfile_command(string):
 def eval_command(string):
     execution = simple_eval(string)
     print(execution)
+
 
 argparse.start()
