@@ -55,12 +55,7 @@ def mkfile_command(string):
     dest="--eval",
 )
 def eval_command(string):
-    try:
-        execution = simple_eval(string)
-        print(execution)
-    except Exception as error:
-        print(f"The code raised error.\n{error}")
-        raise error
-
+    execution = simple_eval(string)
+    print(execution)
 
 argparse.start()
