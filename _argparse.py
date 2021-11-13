@@ -1,12 +1,13 @@
 import argparse
 from typing import Callable
+from dataclasses import dataclass
 
 
+@dataclass(init=True)
 class FunctionInfo:
-    def __init__(self, name: str, instance: Callable, kwargs: dict) -> None:
-        self.name = name
-        self.instance = instance
-        self.kwargs = kwargs
+    name: str
+    instance: Callable
+    kwargs: dict
 
 
 class Argparse:
