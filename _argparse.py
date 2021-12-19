@@ -28,6 +28,6 @@ class Argparse:
         args = self.parser.parse_args()
         for function in self.functions:
             dest = function.kwargs.get("dest") or function.name
-            attr = getattr(args, dest)
+            attr = getattr(args , dest)
             if attr:
                 function.instance(attr)
